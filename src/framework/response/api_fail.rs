@@ -6,8 +6,15 @@ use std::fmt::{self, Debug};
 pub struct ApiErrors {
     #[serde(default)]
     pub error: Option<String>,
-    #[serde(default)]
-    pub errors: Option<String>,
+    #[serde(default, flatten)]
+    pub errors: Option<ErrorValue>,
+}
+
+#[derive(Deserialize, Serialize, Debug, PartialEq, Eq, Clone)]
+#[serde(untagged)]
+pub enum ErrorValue {
+    String(String),
+    ArrayString(Vec<String>),
 }
 
 #[derive(Debug)]
