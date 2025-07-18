@@ -1,5 +1,6 @@
 pub mod domains;
 pub mod emails;
+pub mod suppressions;
 
 use base64::Engine;
 use serde::{Deserialize, Serialize};
