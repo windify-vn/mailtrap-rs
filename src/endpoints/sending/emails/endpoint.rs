@@ -1,5 +1,7 @@
 use crate::endpoints::sending::emails::{BatchEmailResponse, SendEmailRequest, SendEmailResponse};
-use crate::framework::endpoint::{EndpointSpec, RequestBody, serialize_query};
+use crate::framework::Environment;
+use crate::framework::endpoint::{ApiType, EndpointSpec, RequestBody, serialize_query};
+use alloc::fmt::format;
 use http::Method;
 
 impl EndpointSpec for SendEmailRequest {
@@ -18,6 +20,11 @@ impl EndpointSpec for SendEmailRequest {
         let body = serde_json::to_string(&self).unwrap();
         Some(RequestBody::Json(body))
     }
+
+    #[inline]
+    fn api_type(&self) -> ApiType {
+        ApiType::Send
+    }
 }
 
 impl EndpointSpec for BatchEmailResponse {
@@ -35,5 +42,10 @@ impl EndpointSpec for BatchEmailResponse {
     fn body(&self) -> Option<RequestBody> {
         let body = serde_json::to_string(&self).unwrap();
         Some(RequestBody::Json(body))
+    }
+
+    #[inline]
+    fn api_type(&self) -> ApiType {
+        ApiType::Send
     }
 }

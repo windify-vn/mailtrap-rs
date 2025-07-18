@@ -18,6 +18,12 @@ pub enum MultipartPart {
     Bytes(Vec<u8>),
 }
 
+pub enum ApiType {
+    Base,
+    Send,
+    Bulk,
+}
+
 /// Helper trait for endpoints that require a multipart body.
 ///
 /// Mainly exists to allow for client-agnostic multipart body implementations, until reqwest has a
@@ -72,9 +78,36 @@ pub mod spec {
         ///
         /// Implementors should generally not override this.
         fn url(&self, environment: &Environment) -> Url {
-            let mut url = Url::from(environment).join(&self.path()).unwrap();
+            let base = url::Url::from(environment);
+
+            let base = match self.api_type() {
+                ApiType::Base => base,
+                _ => {
+                    let domain = base.domain().unwrap();
+                    let path = base.path();
+
+                    let prefix = match self.api_type() {
+                        ApiType::Send => "send",
+                        ApiType::Bulk => "bulk",
+                        _ => unreachable!(),
+                    };
+
+                    Url::parse(&format!("https://{prefix}.api.{domain}"))
+                        .unwrap()
+                        .join(path)
+                        .unwrap()
+                }
+            };
+
+            let mut url = base.join(&self.path()).unwrap();
             url.set_query(self.query().as_deref());
+
             url
+        }
+
+        #[inline]
+        fn api_type(&self) -> ApiType {
+            ApiType::Base
         }
 
         //noinspection RsConstantConditionIf
