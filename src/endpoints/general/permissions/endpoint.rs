@@ -2,7 +2,7 @@ use crate::endpoints::general::permissions::{
     GetPermissionResourceResponse, GetPermissionResourcesRequest, UpdateTokenPermissionsRequest,
     UpdateTokenPermissionsResponse,
 };
-use crate::framework::endpoint::{EndpointSpec, RequestBody, serialize_query};
+use crate::framework::endpoint::{EndpointSpec, RequestBody};
 use http::Method;
 
 impl EndpointSpec for UpdateTokenPermissionsRequest {

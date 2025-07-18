@@ -1,4 +1,4 @@
-use crate::endpoints::sending::emails::{BatchEmailBase, BatchEmailRequest, BatchEmailResponse};
+use crate::endpoints::sending::emails::{BatchEmailBase, BatchEmailRequest};
 use crate::endpoints::sending::{Attachment, EmailAddress};
 use serde::Serialize;
 use std::collections::HashMap;

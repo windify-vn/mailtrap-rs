@@ -1,7 +1,4 @@
-use crate::endpoints::sending::domains::{
-    ComplianceStatus, DnsRecord, RecordPermission, SendingDomainDetail,
-};
-use crate::endpoints::sending::emails::BatchEmailResponse;
+use crate::endpoints::sending::domains::SendingDomainDetail;
 use crate::framework::response::ApiResult;
 use serde::{Deserialize, Serialize};
 

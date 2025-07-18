@@ -1,7 +1,5 @@
 use crate::endpoints::sending::emails::{BatchEmailResponse, SendEmailRequest, SendEmailResponse};
-use crate::framework::Environment;
-use crate::framework::endpoint::{ApiType, EndpointSpec, RequestBody, serialize_query};
-use alloc::fmt::format;
+use crate::framework::endpoint::{ApiType, EndpointSpec, RequestBody};
 use http::Method;
 
 impl EndpointSpec for SendEmailRequest {

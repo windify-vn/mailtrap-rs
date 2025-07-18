@@ -1,5 +1,5 @@
 use crate::endpoints::general::billing::{GetAccountBillingRequest, GetAccountBillingResponse};
-use crate::framework::endpoint::{EndpointSpec, serialize_query};
+use crate::framework::endpoint::EndpointSpec;
 use http::Method;
 
 impl EndpointSpec for GetAccountBillingRequest {
