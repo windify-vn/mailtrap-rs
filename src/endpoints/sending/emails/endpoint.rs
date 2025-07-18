@@ -1,6 +1,5 @@
 use crate::endpoints::sending::emails::{
-    BatchSendEmailRequest, BatchSendEmailResponse, SendEmailRequest,
-    SendEmailResponse,
+    BatchSendEmailRequest, BatchSendEmailResponse, SendEmailRequest, SendEmailResponse,
 };
 use crate::framework::endpoint::{ApiType, EndpointSpec, RequestBody};
 use http::Method;
