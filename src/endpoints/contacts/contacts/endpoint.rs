@@ -1,37 +1,32 @@
-use crate::endpoints::contacts::fields::schema::ContactField;
-use crate::endpoints::contacts::fields::{
-    CreateContactFieldRequest, DeleteContactFieldRequest, GetContactFieldRequest,
-    GetListContactFieldsRequest, UpdateContactFieldRequest,
+use crate::endpoints::contacts::contacts::response::{
+    CreateContactResponse, GetContactResponse, UpdateContactResponse,
+};
+use crate::endpoints::contacts::contacts::{
+    CreateContactRequest, DeleteContactRequest, GetContactRequest, UpdateContactRequest,
 };
 use crate::framework::endpoint::{EndpointSpec, RequestBody};
 use http::Method;
 
-impl EndpointSpec for GetListContactFieldsRequest {
-    type ResponseType = Vec<ContactField>;
-
-    fn method(&self) -> Method {
-        Method::GET
-    }
-
-    fn path(&self) -> String {
-        format!("api/accounts/{}/contacts/fields", self.account_id)
-    }
-}
-
-impl EndpointSpec for CreateContactFieldRequest {
-    type ResponseType = ContactField;
+impl EndpointSpec for CreateContactRequest {
+    type ResponseType = CreateContactResponse;
 
     fn method(&self) -> Method {
         Method::POST
     }
 
     fn path(&self) -> String {
-        format!("api/accounts/{}/contacts/fields", self.account_id)
+        format!("api/accounts/{}/contacts", self.account_id)
+    }
+
+    #[inline]
+    fn body(&self) -> Option<RequestBody> {
+        let body = serde_json::to_string(&self).unwrap();
+        Some(RequestBody::Json(body))
     }
 }
 
-impl EndpointSpec for GetContactFieldRequest {
-    type ResponseType = ContactField;
+impl EndpointSpec for GetContactRequest {
+    type ResponseType = GetContactResponse;
 
     fn method(&self) -> Method {
         Method::GET
@@ -39,14 +34,14 @@ impl EndpointSpec for GetContactFieldRequest {
 
     fn path(&self) -> String {
         format!(
-            "api/accounts/{}/contacts/fields/{}",
-            self.account_id, self.field_id
+            "api/accounts/{}/contacts/{}",
+            self.account_id, self.contact_id
         )
     }
 }
 
-impl EndpointSpec for UpdateContactFieldRequest {
-    type ResponseType = ContactField;
+impl EndpointSpec for UpdateContactRequest {
+    type ResponseType = UpdateContactResponse;
 
     fn method(&self) -> Method {
         Method::PATCH
@@ -54,8 +49,8 @@ impl EndpointSpec for UpdateContactFieldRequest {
 
     fn path(&self) -> String {
         format!(
-            "api/accounts/{}/contacts/fields/{}",
-            self.account_id, self.field_id
+            "api/accounts/{}/contacts/{}",
+            self.account_id, self.contact_id
         )
     }
 
@@ -66,7 +61,7 @@ impl EndpointSpec for UpdateContactFieldRequest {
     }
 }
 
-impl EndpointSpec for DeleteContactFieldRequest {
+impl EndpointSpec for DeleteContactRequest {
     type ResponseType = ();
 
     fn method(&self) -> Method {
@@ -75,8 +70,8 @@ impl EndpointSpec for DeleteContactFieldRequest {
 
     fn path(&self) -> String {
         format!(
-            "api/accounts/{}/contacts/fields/{}",
-            self.account_id, self.field_id
+            "api/accounts/{}/contacts/{}",
+            self.account_id, self.contact_id
         )
     }
 }

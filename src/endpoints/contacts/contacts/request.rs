@@ -1,47 +1,35 @@
-use crate::endpoints::contacts::fields::schema::DataType;
+use crate::endpoints::contacts::contacts::schema::{CreateContactParams, UpdateContactParams};
 use serde::Serialize;
 use typed_builder::TypedBuilder;
 
-#[derive(TypedBuilder, Default, Debug)]
-pub struct GetListContactFieldsRequest {
+#[serde_with::skip_serializing_none]
+#[derive(TypedBuilder, Serialize, Debug)]
+pub struct CreateContactRequest {
+    #[serde(skip)]
     pub account_id: u64,
+
+    pub contact: CreateContactParams,
+}
+
+#[derive(TypedBuilder, Serialize, Debug)]
+pub struct GetContactRequest {
+    pub account_id: u64,
+    pub contact_id: u64,
 }
 
 #[serde_with::skip_serializing_none]
 #[derive(TypedBuilder, Serialize, Debug)]
-pub struct CreateContactFieldRequest {
+pub struct UpdateContactRequest {
     #[serde(skip)]
     pub account_id: u64,
+    #[serde(skip)]
+    pub contact_id: u64,
 
-    #[builder(setter(into))]
-    pub name: String,
-    pub data_type: DataType,
-    #[builder(setter(into))]
-    pub merge_tag: String,
+    pub contact: UpdateContactParams,
 }
 
-#[derive(TypedBuilder, Default, Debug)]
-pub struct GetContactFieldRequest {
-    pub account_id: u64,
-    pub field_id: u64,
-}
-
-#[serde_with::skip_serializing_none]
 #[derive(TypedBuilder, Serialize, Debug)]
-pub struct UpdateContactFieldRequest {
-    #[serde(skip)]
+pub struct DeleteContactRequest {
     pub account_id: u64,
-    #[serde(skip)]
-    pub field_id: u64,
-
-    #[builder(setter(into))]
-    pub name: String,
-    #[builder(setter(into))]
-    pub merge_tag: String,
-}
-
-#[derive(TypedBuilder, Default, Debug)]
-pub struct DeleteContactFieldRequest {
-    pub account_id: u64,
-    pub field_id: u64,
+    pub contact_id: u64,
 }
