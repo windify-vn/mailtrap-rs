@@ -50,13 +50,13 @@ pub struct InboxPermission {
 }
 
 #[derive(TypedBuilder, Debug, Serialize, Deserialize, Default, Clone)]
-pub struct CreateInboxPrams {
+pub struct CreateInboxParams {
     #[builder(setter(into))]
     pub name: String,
 }
 
 #[derive(TypedBuilder, Debug, Serialize, Deserialize, Default, Clone)]
-pub struct UpdateInboxPrams {
+pub struct UpdateInboxParams {
     #[builder(setter(strip_option, into))]
     pub name: Option<String>,
 

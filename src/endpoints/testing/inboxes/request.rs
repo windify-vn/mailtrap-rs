@@ -1,4 +1,4 @@
-use crate::endpoints::testing::inboxes::{CreateInboxPrams, UpdateInboxPrams};
+use crate::endpoints::testing::inboxes::{CreateInboxParams, UpdateInboxParams};
 use serde::Serialize;
 use typed_builder::TypedBuilder;
 
@@ -15,7 +15,7 @@ pub struct CreateInboxRequest {
     #[serde(skip)]
     pub project_id: u64,
 
-    pub inbox: CreateInboxPrams,
+    pub inbox: CreateInboxParams,
 }
 
 #[derive(TypedBuilder, Default, Debug)]
@@ -31,7 +31,7 @@ pub struct UpdateInboxRequest {
     #[serde(skip)]
     pub inbox_id: u64,
 
-    pub inbox: UpdateInboxPrams,
+    pub inbox: UpdateInboxParams,
 }
 
 #[derive(TypedBuilder, Default, Debug)]
