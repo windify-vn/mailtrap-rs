@@ -22,6 +22,7 @@ pub enum ApiType {
     Base,
     Send,
     Bulk,
+    Sandbox,
 }
 
 /// Helper trait for endpoints that require a multipart body.
@@ -89,6 +90,7 @@ pub mod spec {
                     let prefix = match self.api_type() {
                         ApiType::Send => "send",
                         ApiType::Bulk => "bulk",
+                        ApiType::Sandbox => "sandbox",
                         _ => unreachable!(),
                     };
 
