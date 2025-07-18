@@ -1,3 +1,4 @@
+pub mod domains;
 pub mod emails;
 
 use base64::Engine;

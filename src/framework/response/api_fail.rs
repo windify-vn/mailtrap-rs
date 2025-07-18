@@ -15,6 +15,7 @@ pub struct ApiErrors {
 pub enum ErrorValue {
     String(String),
     ArrayString(Vec<String>),
+    Object(serde_json::Value),
 }
 
 #[derive(Debug)]

@@ -7,3 +7,5 @@ use std::fmt::Debug;
 pub type ApiResponse<ResultType> = Result<ResultType, ApiFailure>;
 
 pub trait ApiResult: DeserializeOwned + Debug {}
+
+impl ApiResult for () {}

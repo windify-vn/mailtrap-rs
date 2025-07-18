@@ -139,6 +139,7 @@ where
         // }
 
         let parsed: Result<Endpoint::ResponseType, reqwest::Error> = resp.json().await;
+
         match parsed {
             Ok(success) => Ok(success),
             Err(e) => Err(ApiFailure::Invalid(e)),
