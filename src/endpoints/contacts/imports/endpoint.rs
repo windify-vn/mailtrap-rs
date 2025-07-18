@@ -1,4 +1,4 @@
-use crate::endpoints::contacts::imports::schema::ContactImportDetail;
+use crate::endpoints::contacts::imports::ContactImportDetail;
 use crate::endpoints::contacts::imports::{GetImportContactRequest, ImportContactsRequest};
 use crate::framework::endpoint::EndpointSpec;
 use http::Method;

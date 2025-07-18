@@ -1,8 +1,8 @@
-use crate::endpoints::contacts::contacts::response::{
-    CreateContactResponse, GetContactResponse, UpdateContactResponse,
-};
 use crate::endpoints::contacts::contacts::{
     CreateContactRequest, DeleteContactRequest, GetContactRequest, UpdateContactRequest,
+};
+use crate::endpoints::contacts::contacts::{
+    CreateContactResponse, GetContactResponse, UpdateContactResponse,
 };
 use crate::framework::endpoint::{EndpointSpec, RequestBody};
 use http::Method;

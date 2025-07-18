@@ -1,4 +1,4 @@
-use crate::endpoints::contacts::fields::schema::ContactField;
+use crate::endpoints::contacts::fields::ContactField;
 use crate::endpoints::contacts::fields::{
     CreateContactFieldRequest, DeleteContactFieldRequest, GetContactFieldRequest,
     GetListContactFieldsRequest, UpdateContactFieldRequest,

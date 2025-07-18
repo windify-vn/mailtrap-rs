@@ -1,4 +1,4 @@
-use crate::endpoints::contacts::contacts::schema::{CreateContactParams, UpdateContactParams};
+use crate::endpoints::contacts::contacts::{CreateContactParams, UpdateContactParams};
 use serde::Serialize;
 use typed_builder::TypedBuilder;
 

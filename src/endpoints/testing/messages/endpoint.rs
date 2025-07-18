@@ -1,12 +1,12 @@
-use crate::endpoints::testing::messages::response::{
-    ForwardEmailMessageResponse, GetHtmlAnalysisResponse, GetMessageHeadersResponse,
-};
 use crate::endpoints::testing::messages::{
     DeleteEmailMessageRequest, ForwardEmailMessageRequest, GetEmailMessageRequest,
     GetEmlMessageRequest, GetHtmlAnalysisRequest, GetHtmlMessageRequest,
     GetListEmailMessageRequest, GetMessageHeadersRequest, GetMessageSourceRequest,
     GetMessageSpamReportRequest, GetRawMessageRequest, GetTextMessageRequest, MessageDetail,
     MessageSpamReport, UpdateEmailMessageRequest,
+};
+use crate::endpoints::testing::messages::{
+    ForwardEmailMessageResponse, GetHtmlAnalysisResponse, GetMessageHeadersResponse,
 };
 use crate::framework::endpoint::{EndpointSpec, RequestBody, serialize_query};
 use http::Method;

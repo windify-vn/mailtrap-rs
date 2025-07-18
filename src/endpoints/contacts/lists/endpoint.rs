@@ -1,4 +1,4 @@
-use crate::endpoints::contacts::lists::schema::ContactList;
+use crate::endpoints::contacts::lists::ContactList;
 use crate::endpoints::contacts::lists::{
     CreateContactListsRequest, DeleteContactListsRequest, GetContactListsRequest,
     GetListContactListsRequest, UpdateContactListsRequest,

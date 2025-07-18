@@ -1,4 +1,4 @@
-use crate::endpoints::contacts::fields::schema::DataType;
+use crate::endpoints::contacts::fields::DataType;
 use serde::Serialize;
 use typed_builder::TypedBuilder;
 

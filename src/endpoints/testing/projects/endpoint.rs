@@ -1,4 +1,4 @@
-use crate::endpoints::testing::projects::response::DeleteProjectResponse;
+use crate::endpoints::testing::projects::DeleteProjectResponse;
 use crate::endpoints::testing::projects::{
     CreateProjectRequest, DeleteProjectRequest, GetListProjectRequest, GetProjectRequest,
     ProjectDetail, UpdateProjectRequest,
