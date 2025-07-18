@@ -20,9 +20,9 @@ pub enum Environment {
 impl From<&Environment> for url::Url {
     fn from(env: &Environment) -> Self {
         match env {
-            Environment::Production => url::Url::parse("https://mailtrap.io/api").unwrap(),
+            Environment::Production => url::Url::parse("https://mailtrap.io/").unwrap(),
             Environment::Mock => {
-                url::Url::parse("https://stoplight.io/mocks/railsware/mailtrap-api-docs/100824079")
+                url::Url::parse("https://stoplight.io/mocks/railsware/mailtrap-api-docs/100824079/")
                     .unwrap()
             }
             Environment::Custom(url) => url::Url::parse(url.as_str()).unwrap(),

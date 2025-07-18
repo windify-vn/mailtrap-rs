@@ -3,19 +3,11 @@ use std::error::Error;
 use std::fmt::{self, Debug};
 
 #[derive(Deserialize, Serialize, Debug, Default, PartialEq, Eq, Clone)]
-#[serde(transparent)]
-pub struct ApiErrors(serde_json::Value);
-
-impl ApiErrors {
-    pub fn into_inner(self) -> serde_json::Value {
-        self.0
-    }
-}
-
-impl AsRef<serde_json::Value> for ApiErrors {
-    fn as_ref(&self) -> &serde_json::Value {
-        &self.0
-    }
+pub struct ApiErrors {
+    #[serde(default)]
+    pub error: Option<String>,
+    #[serde(default)]
+    pub errors: Option<String>,
 }
 
 #[derive(Debug)]
@@ -43,7 +35,7 @@ impl fmt::Display for ApiFailure {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
             ApiFailure::Error(status, api_errors) => {
-                write!(f, "HTTP {status} - {:?}", api_errors.as_ref())
+                write!(f, "HTTP {status} - {api_errors:?}",)
             }
             ApiFailure::Invalid(err) => write!(f, "{err}"),
         }
