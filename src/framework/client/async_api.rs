@@ -128,6 +128,16 @@ where
 {
     let status = resp.status();
     if status.is_success() {
+        // let text = resp.text().await.map_err(ApiFailure::Invalid)?;
+        // println!("text: {text}");
+        // let parsed: Result<Endpoint::ResponseType, serde_json::Error> = serde_json::from_str(&text);
+        // match parsed {
+        //     Ok(success) => Ok(success),
+        //     Err(e) => {
+        //         panic!("{}", e)
+        //     }
+        // }
+
         let parsed: Result<Endpoint::ResponseType, reqwest::Error> = resp.json().await;
         match parsed {
             Ok(success) => Ok(success),

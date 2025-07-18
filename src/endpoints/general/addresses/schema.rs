@@ -1,5 +1,5 @@
+use crate::endpoints::general::{AccessLevel, ResourceType};
 use serde::{Deserialize, Serialize};
-use serde_repr::{Deserialize_repr, Serialize_repr};
 
 #[derive(
     Debug, Deserialize, Serialize, Clone, PartialEq, Eq, PartialOrd, Ord, strum_macros::AsRefStr,
@@ -10,30 +10,6 @@ pub enum SpecifierType {
     User,
     Invite,
     ApiToken,
-}
-
-#[derive(
-    Debug, Deserialize, Serialize, Clone, PartialEq, Eq, PartialOrd, Ord, strum_macros::AsRefStr,
-)]
-#[serde(rename_all = "snake_case")]
-#[strum(serialize_all = "snake_case")]
-pub enum ResourceType {
-    Account,
-    Billing,
-    Project,
-    Inbox,
-    SendingDomain,
-    EmailCampaignPermissionScope,
-}
-
-#[derive(Serialize_repr, Deserialize_repr, Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
-#[repr(u32)]
-pub enum AccessLevel {
-    Owner = 1000,
-    Admin = 100,
-    ViewerPlus = 50,
-    Viewer = 10,
-    Indeterminate = 1,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
