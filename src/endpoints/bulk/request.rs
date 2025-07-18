@@ -18,7 +18,7 @@ pub struct SendBulkEmailRequest {
     #[builder(default, setter(strip_option, into))]
     pub cc: Option<Vec<EmailAddress>>,
     #[builder(default, setter(strip_option, into))]
-    pub bbc: Option<Vec<EmailAddress>>,
+    pub bcc: Option<Vec<EmailAddress>>,
     #[builder(default, setter(strip_option, into))]
     pub reply_to: Option<EmailAddress>,
 
