@@ -3,13 +3,13 @@ use serde::Serialize;
 use typed_builder::TypedBuilder;
 
 #[derive(TypedBuilder, Default, Debug)]
-pub struct GetListFieldsRequest {
+pub struct GetListContactFieldsRequest {
     pub account_id: u64,
 }
 
 #[serde_with::skip_serializing_none]
 #[derive(TypedBuilder, Serialize, Debug)]
-pub struct CreateFieldRequest {
+pub struct CreateContactFieldRequest {
     #[serde(skip)]
     pub account_id: u64,
 
@@ -21,14 +21,14 @@ pub struct CreateFieldRequest {
 }
 
 #[derive(TypedBuilder, Default, Debug)]
-pub struct GetFieldRequest {
+pub struct GetContactFieldRequest {
     pub account_id: u64,
     pub field_id: u64,
 }
 
 #[serde_with::skip_serializing_none]
 #[derive(TypedBuilder, Serialize, Debug)]
-pub struct UpdateFieldRequest {
+pub struct UpdateContactFieldRequest {
     #[serde(skip)]
     pub account_id: u64,
     #[serde(skip)]
@@ -41,7 +41,7 @@ pub struct UpdateFieldRequest {
 }
 
 #[derive(TypedBuilder, Default, Debug)]
-pub struct DeleteFieldRequest {
+pub struct DeleteContactFieldRequest {
     pub account_id: u64,
     pub field_id: u64,
 }

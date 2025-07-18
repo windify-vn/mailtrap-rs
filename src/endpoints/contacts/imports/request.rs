@@ -12,7 +12,7 @@ pub struct ImportContactsRequest {
 }
 
 #[derive(TypedBuilder, Debug)]
-pub struct GetContactRequest {
+pub struct GetImportContactRequest {
     pub account_id: u64,
     pub import_id: u64,
 }

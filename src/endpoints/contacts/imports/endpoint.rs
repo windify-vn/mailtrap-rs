@@ -1,10 +1,10 @@
-use crate::endpoints::contacts::imports::schema::ContactDetail;
-use crate::endpoints::contacts::imports::{GetContactRequest, ImportContactsRequest};
+use crate::endpoints::contacts::imports::schema::ContactImportDetail;
+use crate::endpoints::contacts::imports::{GetImportContactRequest, ImportContactsRequest};
 use crate::framework::endpoint::EndpointSpec;
 use http::Method;
 
 impl EndpointSpec for ImportContactsRequest {
-    type ResponseType = Vec<ContactDetail>;
+    type ResponseType = Vec<ContactImportDetail>;
 
     fn method(&self) -> Method {
         Method::POST
@@ -15,8 +15,8 @@ impl EndpointSpec for ImportContactsRequest {
     }
 }
 
-impl EndpointSpec for GetContactRequest {
-    type ResponseType = ContactDetail;
+impl EndpointSpec for GetImportContactRequest {
+    type ResponseType = ContactImportDetail;
 
     fn method(&self) -> Method {
         Method::GET

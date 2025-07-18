@@ -12,7 +12,7 @@ pub struct ContactImport {
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
-pub struct ContactDetail {
+pub struct ContactImportDetail {
     pub id: u64,
     pub status: ImportStatus,
     pub created_contacts_count: Option<i64>,
@@ -20,8 +20,8 @@ pub struct ContactDetail {
     pub contacts_over_limit_count: Option<i64>,
 }
 
-impl ApiResult for ContactDetail {}
-impl ApiResult for Vec<ContactDetail> {}
+impl ApiResult for ContactImportDetail {}
+impl ApiResult for Vec<ContactImportDetail> {}
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 #[serde(rename_all = "lowercase")]

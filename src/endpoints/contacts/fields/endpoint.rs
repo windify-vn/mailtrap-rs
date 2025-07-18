@@ -1,13 +1,13 @@
-use crate::endpoints::contacts::fields::schema::CustomField;
+use crate::endpoints::contacts::fields::schema::ContactField;
 use crate::endpoints::contacts::fields::{
-    CreateFieldRequest, DeleteFieldRequest, GetFieldRequest, GetListFieldsRequest,
-    UpdateFieldRequest,
+    CreateContactFieldRequest, DeleteContactFieldRequest, GetContactFieldRequest,
+    GetListContactFieldsRequest, UpdateContactFieldRequest,
 };
 use crate::framework::endpoint::{EndpointSpec, RequestBody};
 use http::Method;
 
-impl EndpointSpec for GetListFieldsRequest {
-    type ResponseType = Vec<CustomField>;
+impl EndpointSpec for GetListContactFieldsRequest {
+    type ResponseType = Vec<ContactField>;
 
     fn method(&self) -> Method {
         Method::GET
@@ -18,8 +18,8 @@ impl EndpointSpec for GetListFieldsRequest {
     }
 }
 
-impl EndpointSpec for CreateFieldRequest {
-    type ResponseType = CustomField;
+impl EndpointSpec for CreateContactFieldRequest {
+    type ResponseType = ContactField;
 
     fn method(&self) -> Method {
         Method::POST
@@ -30,8 +30,8 @@ impl EndpointSpec for CreateFieldRequest {
     }
 }
 
-impl EndpointSpec for GetFieldRequest {
-    type ResponseType = CustomField;
+impl EndpointSpec for GetContactFieldRequest {
+    type ResponseType = ContactField;
 
     fn method(&self) -> Method {
         Method::GET
@@ -45,8 +45,8 @@ impl EndpointSpec for GetFieldRequest {
     }
 }
 
-impl EndpointSpec for UpdateFieldRequest {
-    type ResponseType = CustomField;
+impl EndpointSpec for UpdateContactFieldRequest {
+    type ResponseType = ContactField;
 
     fn method(&self) -> Method {
         Method::PATCH
@@ -66,7 +66,7 @@ impl EndpointSpec for UpdateFieldRequest {
     }
 }
 
-impl EndpointSpec for DeleteFieldRequest {
+impl EndpointSpec for DeleteContactFieldRequest {
     type ResponseType = ();
 
     fn method(&self) -> Method {
