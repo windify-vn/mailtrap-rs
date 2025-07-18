@@ -1,5 +1,5 @@
 use crate::endpoints::testing::messages::HtmlReport;
-use crate::framework::response::ApiResult;
+use crate::framework::response::JsonResult;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
@@ -8,17 +8,17 @@ pub struct ForwardEmailMessageResponse {
     pub message: String,
 }
 
-impl ApiResult for ForwardEmailMessageResponse {}
+impl JsonResult for ForwardEmailMessageResponse {}
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct GetHtmlAnalysisResponse {
     pub report: HtmlReport,
 }
 
-impl ApiResult for GetHtmlAnalysisResponse {}
+impl JsonResult for GetHtmlAnalysisResponse {}
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct GetMessageHeadersResponse {
     pub headers: HashMap<String, String>,
 }
-impl ApiResult for GetMessageHeadersResponse {}
+impl JsonResult for GetMessageHeadersResponse {}

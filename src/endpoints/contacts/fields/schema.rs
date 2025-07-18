@@ -1,4 +1,4 @@
-use crate::framework::response::ApiResult;
+use crate::framework::response::JsonResult;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -9,8 +9,8 @@ pub struct ContactField {
     pub merge_tag: String,
 }
 
-impl ApiResult for ContactField {}
-impl ApiResult for Vec<ContactField> {}
+impl JsonResult for ContactField {}
+impl JsonResult for Vec<ContactField> {}
 
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "lowercase")]

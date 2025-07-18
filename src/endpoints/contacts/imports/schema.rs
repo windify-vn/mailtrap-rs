@@ -1,4 +1,4 @@
-use crate::framework::response::ApiResult;
+use crate::framework::response::JsonResult;
 use serde::{Deserialize, Serialize};
 use typed_builder::TypedBuilder;
 
@@ -20,8 +20,8 @@ pub struct ContactImportDetail {
     pub contacts_over_limit_count: Option<i64>,
 }
 
-impl ApiResult for ContactImportDetail {}
-impl ApiResult for Vec<ContactImportDetail> {}
+impl JsonResult for ContactImportDetail {}
+impl JsonResult for Vec<ContactImportDetail> {}
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 #[serde(rename_all = "lowercase")]

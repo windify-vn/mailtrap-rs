@@ -1,4 +1,4 @@
-use crate::framework::response::ApiResult;
+use crate::framework::response::JsonResult;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -24,5 +24,5 @@ pub struct AttachmentDetail {
     pub download_path: String,
 }
 
-impl ApiResult for AttachmentDetail {}
-impl ApiResult for Vec<AttachmentDetail> {}
+impl JsonResult for AttachmentDetail {}
+impl JsonResult for Vec<AttachmentDetail> {}

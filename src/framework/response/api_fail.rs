@@ -22,6 +22,7 @@ pub enum ErrorValue {
 pub enum ApiFailure {
     Error(reqwest::StatusCode, ApiErrors),
     Invalid(reqwest::Error),
+    Decoding(serde_json::Error),
 }
 
 impl Error for ApiFailure {}
@@ -32,6 +33,9 @@ impl PartialEq for ApiFailure {
             (ApiFailure::Invalid(e1), ApiFailure::Invalid(e2)) => e1.to_string() == e2.to_string(),
             (ApiFailure::Error(status1, e1), ApiFailure::Error(status2, e2)) => {
                 status1 == status2 && e1 == e2
+            }
+            (ApiFailure::Decoding(e1), ApiFailure::Decoding(e2)) => {
+                e1.to_string() == e2.to_string()
             }
             _ => false,
         }
@@ -46,6 +50,7 @@ impl fmt::Display for ApiFailure {
                 write!(f, "HTTP {status} - {api_errors:?}",)
             }
             ApiFailure::Invalid(err) => write!(f, "{err}"),
+            ApiFailure::Decoding(err) => write!(f, "Decoding Error - {err}"),
         }
     }
 }

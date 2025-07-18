@@ -1,4 +1,4 @@
-use crate::framework::response::ApiResult;
+use crate::framework::response::JsonResult;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
@@ -8,5 +8,5 @@ pub struct GetAccountsResponse {
     pub access_levels: Vec<u32>,
 }
 
-impl ApiResult for GetAccountsResponse {}
-impl ApiResult for Vec<GetAccountsResponse> {}
+impl JsonResult for GetAccountsResponse {}
+impl JsonResult for Vec<GetAccountsResponse> {}

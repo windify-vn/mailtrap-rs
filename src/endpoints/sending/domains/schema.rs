@@ -1,4 +1,4 @@
-use crate::framework::response::ApiResult;
+use crate::framework::response::JsonResult;
 use serde::{Deserialize, Serialize};
 use typed_builder::TypedBuilder;
 
@@ -76,5 +76,5 @@ pub struct SendingDomainDetail {
     pub permissions: RecordPermission,
 }
 
-impl ApiResult for SendingDomainDetail {}
-impl ApiResult for Vec<SendingDomainDetail> {}
+impl JsonResult for SendingDomainDetail {}
+impl JsonResult for Vec<SendingDomainDetail> {}

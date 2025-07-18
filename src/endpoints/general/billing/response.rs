@@ -1,5 +1,5 @@
 use crate::endpoints::general::billing::{BillingCycle, BillingSending, BillingTesting};
-use crate::framework::response::ApiResult;
+use crate::framework::response::JsonResult;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
@@ -9,4 +9,4 @@ pub struct GetAccountBillingResponse {
     pub sending: BillingSending,
 }
 
-impl ApiResult for GetAccountBillingResponse {}
+impl JsonResult for GetAccountBillingResponse {}

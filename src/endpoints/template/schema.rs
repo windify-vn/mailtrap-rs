@@ -1,4 +1,4 @@
-use crate::framework::response::ApiResult;
+use crate::framework::response::JsonResult;
 use serde::{Deserialize, Serialize};
 use typed_builder::TypedBuilder;
 
@@ -14,8 +14,8 @@ pub struct EmailTemplate {
     pub updated_at: chrono::DateTime<chrono::Utc>,
 }
 
-impl ApiResult for EmailTemplate {}
-impl ApiResult for Vec<EmailTemplate> {}
+impl JsonResult for EmailTemplate {}
+impl JsonResult for Vec<EmailTemplate> {}
 
 #[derive(TypedBuilder, Debug, Serialize, Deserialize, Default, Clone)]
 pub struct EmailTemplatesParams {

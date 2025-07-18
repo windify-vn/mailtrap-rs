@@ -1,6 +1,7 @@
 use crate::framework::auth::AuthClient;
 use crate::framework::client::ClientConfig;
 use crate::framework::endpoint::{EndpointSpec, MultipartPart, RequestBody};
+use crate::framework::response::ApiResponseType;
 use crate::framework::{
     Environment,
     auth::Credentials,
@@ -76,6 +77,7 @@ impl Client {
     ) -> ApiResponse<Endpoint::ResponseType>
     where
         Endpoint: EndpointSpec + Send + Sync,
+        Endpoint::ResponseType: ApiResponseType + Send,
     {
         // Build the request
         let mut request = self
@@ -116,37 +118,18 @@ impl Client {
         request = request.auth(&self.credentials);
         let response = request.send().await?;
 
-        map_api_response_json::<Endpoint>(response).await
-    }
-}
+        let status = response.status();
+        if status.is_success() {
+            let full_byres = response.bytes().await?;
 
-async fn map_api_response_json<Endpoint>(
-    resp: reqwest::Response,
-) -> Result<Endpoint::ResponseType, ApiFailure>
-where
-    Endpoint: EndpointSpec,
-{
-    let status = resp.status();
-    if status.is_success() {
-        // let text = resp.text().await.map_err(ApiFailure::Invalid)?;
-        // println!("text: {text}");
-        // let parsed: Result<Endpoint::ResponseType, serde_json::Error> = serde_json::from_str(&text);
-        // match parsed {
-        //     Ok(success) => Ok(success),
-        //     Err(e) => {
-        //         panic!("{}", e)
-        //     }
-        // }
+            // let text = String::from_utf8_lossy(&full_byres);
+            // println!("{}", text);
 
-        let parsed: Result<Endpoint::ResponseType, reqwest::Error> = resp.json().await;
-
-        match parsed {
-            Ok(success) => Ok(success),
-            Err(e) => Err(ApiFailure::Invalid(e)),
+            Endpoint::ResponseType::from_response(&full_byres)
+        } else {
+            let parsed: Result<ApiErrors, reqwest::Error> = response.json().await;
+            let errors = parsed.unwrap_or_default();
+            Err(ApiFailure::Error(status, errors))
         }
-    } else {
-        let parsed: Result<ApiErrors, reqwest::Error> = resp.json().await;
-        let errors = parsed.unwrap_or_default();
-        Err(ApiFailure::Error(status, errors))
     }
 }

@@ -1,4 +1,4 @@
-use crate::framework::response::ApiResult;
+use crate::framework::response::JsonResult;
 use serde::{Deserialize, Serialize, Serializer};
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
@@ -28,8 +28,8 @@ pub struct MessageDetail {
     pub smtp_information: SmtpInformation,
 }
 
-impl ApiResult for MessageDetail {}
-impl ApiResult for Vec<MessageDetail> {}
+impl JsonResult for MessageDetail {}
+impl JsonResult for Vec<MessageDetail> {}
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct BlacklistsReportInfo {
@@ -110,7 +110,7 @@ pub struct MessageSpamReport {
     pub details: Vec<SpamReportDetail>,
 }
 
-impl ApiResult for MessageSpamReport {}
+impl JsonResult for MessageSpamReport {}
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SpamReportDetail {

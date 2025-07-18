@@ -1,7 +1,7 @@
 use crate::endpoints::general::addresses::schema::{
     AccessPermissions, AccessResource, AccessSpecifier, SpecifierType,
 };
-use crate::framework::response::ApiResult;
+use crate::framework::response::JsonResult;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
@@ -13,12 +13,12 @@ pub struct GetListAccessesResponse {
     pub permission: AccessPermissions,
 }
 
-impl ApiResult for GetListAccessesResponse {}
-impl ApiResult for Vec<GetListAccessesResponse> {}
+impl JsonResult for GetListAccessesResponse {}
+impl JsonResult for Vec<GetListAccessesResponse> {}
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct DeleteAccessResponse {
     pub id: u64,
 }
 
-impl ApiResult for DeleteAccessResponse {}
+impl JsonResult for DeleteAccessResponse {}

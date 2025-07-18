@@ -1,6 +1,6 @@
 use crate::endpoints::general::permissions::PermissionResource;
 use crate::endpoints::general::{AccessLevel, ResourceType};
-use crate::framework::response::ApiResult;
+use crate::framework::response::JsonResult;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
@@ -8,7 +8,7 @@ pub struct UpdateTokenPermissionsResponse {
     pub message: String,
 }
 
-impl ApiResult for UpdateTokenPermissionsResponse {}
+impl JsonResult for UpdateTokenPermissionsResponse {}
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct GetPermissionResourceResponse {
@@ -21,5 +21,5 @@ pub struct GetPermissionResourceResponse {
     pub resources: Vec<PermissionResource>,
 }
 
-impl ApiResult for GetPermissionResourceResponse {}
-impl ApiResult for Vec<GetPermissionResourceResponse> {}
+impl JsonResult for GetPermissionResourceResponse {}
+impl JsonResult for Vec<GetPermissionResourceResponse> {}

@@ -1,5 +1,5 @@
 use crate::endpoints::sending::emails::BatchEmailResponse;
-use crate::framework::response::ApiResult;
+use crate::framework::response::JsonResult;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
@@ -9,7 +9,7 @@ pub struct SendBulkEmailResponse {
     pub messages_ids: Vec<String>,
 }
 
-impl ApiResult for SendBulkEmailResponse {}
+impl JsonResult for SendBulkEmailResponse {}
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct BatchSendBulkEmailResponse {
@@ -20,4 +20,4 @@ pub struct BatchSendBulkEmailResponse {
     pub errors: Vec<String>,
 }
 
-impl ApiResult for BatchSendBulkEmailResponse {}
+impl JsonResult for BatchSendBulkEmailResponse {}

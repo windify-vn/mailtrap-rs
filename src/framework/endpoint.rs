@@ -1,4 +1,4 @@
-use crate::framework::response::ApiResult;
+use crate::framework::response::JsonResult;
 use serde::Serialize;
 use std::borrow::Cow;
 use url::Url;
@@ -42,6 +42,7 @@ pub trait MultipartBody {
 pub mod spec {
     use super::*;
     use crate::framework::Environment;
+    use crate::framework::response::ApiResponseType;
 
     /// Represents a specification for an API call that can be built into an HTTP request and sent.
     /// New endpoints should implement this trait.
@@ -49,9 +50,7 @@ pub mod spec {
     /// If the request succeeds, the call will resolve to a `ResultType`.
     pub trait EndpointSpec {
         /// The JSON response type for this endpoint, if any.
-        ///
-        /// For endpoints that return either raw bytes or nothing, this should be `()`.
-        type ResponseType: ApiResult;
+        type ResponseType: ApiResponseType;
 
         /// The HTTP Method used for this endpoint (e.g. GET, PATCH, DELETE)
         fn method(&self) -> Method;
@@ -127,12 +126,12 @@ pub mod spec {
     }
 }
 // Auto-implement the public Endpoint trait for EndpointInternal implementors.
-impl<T: ApiResult, U: EndpointSpec> Endpoint<T> for U {}
+impl<T: JsonResult, U: EndpointSpec> Endpoint<T> for U {}
 
 /// An API call that can be built into an HTTP request and sent.
 ///
 /// If the request succeeds, the call will resolve to a `ResultType`.
-pub trait Endpoint<ResultType: ApiResult>: EndpointSpec {}
+pub trait Endpoint<ResultType: JsonResult>: EndpointSpec {}
 
 /// A utility function for serializing parameters into a URL query string.
 #[inline]

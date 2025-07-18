@@ -134,7 +134,7 @@ impl EndpointSpec for GetHtmlAnalysisRequest {
 }
 
 impl EndpointSpec for GetTextMessageRequest {
-    type ResponseType = ();
+    type ResponseType = String;
 
     fn method(&self) -> Method {
         Method::GET
@@ -149,7 +149,7 @@ impl EndpointSpec for GetTextMessageRequest {
 }
 
 impl EndpointSpec for GetRawMessageRequest {
-    type ResponseType = ();
+    type ResponseType = String;
 
     fn method(&self) -> Method {
         Method::GET
@@ -164,7 +164,7 @@ impl EndpointSpec for GetRawMessageRequest {
 }
 
 impl EndpointSpec for GetMessageSourceRequest {
-    type ResponseType = ();
+    type ResponseType = String;
 
     fn method(&self) -> Method {
         Method::GET
@@ -179,7 +179,7 @@ impl EndpointSpec for GetMessageSourceRequest {
 }
 
 impl EndpointSpec for GetHtmlMessageRequest {
-    type ResponseType = ();
+    type ResponseType = String;
 
     fn method(&self) -> Method {
         Method::GET
@@ -194,7 +194,7 @@ impl EndpointSpec for GetHtmlMessageRequest {
 }
 
 impl EndpointSpec for GetEmlMessageRequest {
-    type ResponseType = ();
+    type ResponseType = String;
 
     fn method(&self) -> Method {
         Method::GET

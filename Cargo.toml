@@ -42,6 +42,8 @@ thiserror = "2"
 typed-builder = "0.21"
 url = "2.5"
 
+bytes = "1.10"
+
 
 [dev-dependencies]
 

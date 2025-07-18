@@ -1,4 +1,4 @@
-use crate::framework::response::ApiResult;
+use crate::framework::response::JsonResult;
 use serde::{Deserialize, Serialize};
 use typed_builder::TypedBuilder;
 
@@ -38,8 +38,8 @@ pub struct InboxDetail {
     pub permissions: InboxPermission,
 }
 
-impl ApiResult for InboxDetail {}
-impl ApiResult for Vec<InboxDetail> {}
+impl JsonResult for InboxDetail {}
+impl JsonResult for Vec<InboxDetail> {}
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct InboxPermission {

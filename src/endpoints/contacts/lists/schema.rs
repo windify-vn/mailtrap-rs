@@ -1,4 +1,4 @@
-use crate::framework::response::ApiResult;
+use crate::framework::response::JsonResult;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -7,5 +7,5 @@ pub struct ContactList {
     pub name: String,
 }
 
-impl ApiResult for ContactList {}
-impl ApiResult for Vec<ContactList> {}
+impl JsonResult for ContactList {}
+impl JsonResult for Vec<ContactList> {}

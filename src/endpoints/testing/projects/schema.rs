@@ -1,5 +1,5 @@
 use crate::endpoints::testing::inboxes::InboxDetail;
-use crate::framework::response::ApiResult;
+use crate::framework::response::JsonResult;
 use serde::{Deserialize, Serialize};
 use typed_builder::TypedBuilder;
 
@@ -12,8 +12,8 @@ pub struct ProjectDetail {
     pub permissions: ProjectPermissions,
 }
 
-impl ApiResult for ProjectDetail {}
-impl ApiResult for Vec<ProjectDetail> {}
+impl JsonResult for ProjectDetail {}
+impl JsonResult for Vec<ProjectDetail> {}
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ShareLinks {

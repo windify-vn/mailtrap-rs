@@ -1,4 +1,4 @@
-use crate::framework::response::ApiResult;
+use crate::framework::response::JsonResult;
 use serde::{Deserialize, Serialize};
 
 #[derive(
@@ -45,5 +45,5 @@ pub struct SuppressionDetail {
     pub message_subject: Option<String>,
 }
 
-impl ApiResult for SuppressionDetail {}
-impl ApiResult for Vec<SuppressionDetail> {}
+impl JsonResult for SuppressionDetail {}
+impl JsonResult for Vec<SuppressionDetail> {}

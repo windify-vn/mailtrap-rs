@@ -3,7 +3,7 @@ use crate::framework::auth::AuthClient;
 use crate::framework::auth::Credentials;
 use crate::framework::client::ClientConfig;
 use crate::framework::endpoint::{EndpointSpec, MultipartPart, RequestBody};
-use crate::framework::response::{ApiErrors, ApiFailure, ApiResponse};
+use crate::framework::response::{ApiErrors, ApiFailure, ApiResponse, ApiResponseType};
 use std::borrow::Cow;
 use std::net::SocketAddr;
 
@@ -106,26 +106,18 @@ impl HttpApiClient {
         request = request.auth(&self.credentials);
         let response = request.send()?;
 
-        map_api_response_json::<Endpoint>(response)
-    }
-}
+        let status = response.status();
+        if status.is_success() {
+            let full_byres = response.bytes()?;
 
-fn map_api_response_json<Endpoint>(
-    resp: reqwest::blocking::Response,
-) -> Result<Endpoint::ResponseType, ApiFailure>
-where
-    Endpoint: EndpointSpec,
-{
-    let status = resp.status();
-    if status.is_success() {
-        let parsed: Result<Endpoint::ResponseType, reqwest::Error> = resp.json();
-        match parsed {
-            Ok(success) => Ok(success),
-            Err(e) => Err(ApiFailure::Invalid(e)),
+            // let text = String::from_utf8_lossy(&full_byres);
+            // println!("{}", text);
+
+            Endpoint::ResponseType::from_response(&full_byres)
+        } else {
+            let parsed: Result<ApiErrors, reqwest::Error> = response.json();
+            let errors = parsed.unwrap_or_default();
+            Err(ApiFailure::Error(status, errors))
         }
-    } else {
-        let parsed: Result<ApiErrors, reqwest::Error> = resp.json();
-        let errors = parsed.unwrap_or_default();
-        Err(ApiFailure::Error(status, errors))
     }
 }
