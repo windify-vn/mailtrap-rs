@@ -1,12 +1,10 @@
-use crate::endpoints::sending::emails::{
-    BatchSendEmailRequest, BatchSendEmailResponse, SendEmailRequest,
-    SendEmailResponse,
-};
+use crate::endpoints::bulk::request::{BatchSendBulkEmailRequest, SendBulkEmailRequest};
+use crate::endpoints::bulk::response::{BatchSendBulkEmailResponse, SendBulkEmailResponse};
 use crate::framework::endpoint::{ApiType, EndpointSpec, RequestBody};
 use http::Method;
 
-impl EndpointSpec for SendEmailRequest {
-    type ResponseType = SendEmailResponse;
+impl EndpointSpec for SendBulkEmailRequest {
+    type ResponseType = SendBulkEmailResponse;
 
     fn method(&self) -> Method {
         Method::POST
@@ -24,12 +22,12 @@ impl EndpointSpec for SendEmailRequest {
 
     #[inline]
     fn api_type(&self) -> ApiType {
-        ApiType::Send
+        ApiType::Bulk
     }
 }
 
-impl EndpointSpec for BatchSendEmailRequest {
-    type ResponseType = BatchSendEmailResponse;
+impl EndpointSpec for BatchSendBulkEmailRequest {
+    type ResponseType = BatchSendBulkEmailResponse;
 
     fn method(&self) -> Method {
         Method::POST
@@ -47,6 +45,6 @@ impl EndpointSpec for BatchSendEmailRequest {
 
     #[inline]
     fn api_type(&self) -> ApiType {
-        ApiType::Send
+        ApiType::Bulk
     }
 }
